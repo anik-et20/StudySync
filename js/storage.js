@@ -17,8 +17,8 @@ const STORAGE_KEYS = {
 // Seed Data for initial load
 const SEED_DATA = {
   user: {
-    name: 'Aniket',
-    fullName: 'Aniket Sharma',
+    name: 'Anjali',
+    fullName: 'Anjali Sharma',
     major: 'Computer Science & Engineering',
     semester: 'Semester 5',
     dailyGoalHours: 4.5,
@@ -302,6 +302,19 @@ const Storage = {
   init() {
     if (!localStorage.getItem(STORAGE_KEYS.USER)) {
       this.resetToDefaults();
+    } else {
+      try {
+        const currentUser = this.getUser();
+        if (currentUser && currentUser.name === 'Aniket') {
+          currentUser.name = 'Anjali';
+          if (currentUser.fullName === 'Aniket Sharma') {
+            currentUser.fullName = 'Anjali Sharma';
+          }
+          this.saveUser(currentUser);
+        }
+      } catch (e) {
+        console.error('Migration error:', e);
+      }
     }
   },
 

@@ -164,8 +164,11 @@ const App = {
     const userNameDisplay = document.getElementById('sidebarUserName');
     const userMajorDisplay = document.getElementById('sidebarUserRole');
 
-    if (userNameDisplay) userNameDisplay.textContent = user.name || 'Student';
+    const userAvatarDisplay = document.getElementById('sidebarAvatar');
+
+    if (userNameDisplay) userNameDisplay.textContent = user.name || 'Anjali';
     if (userMajorDisplay) userMajorDisplay.textContent = user.major || 'College Student';
+    if (userAvatarDisplay) userAvatarDisplay.textContent = (user.name || 'Anjali').charAt(0).toUpperCase();
 
     const now = new Date();
     const hours = now.getHours();
@@ -174,7 +177,7 @@ const App = {
     else if (hours < 18) timeGreeting = 'Good afternoon';
 
     if (greetingElem) {
-      greetingElem.innerHTML = `${timeGreeting}, ${escapeHtml(user.name || 'Aniket')} <span style="animation: wave 2s infinite transform-origin: 70% 70%; display: inline-block;">👋</span>`;
+      greetingElem.innerHTML = `${timeGreeting}, ${escapeHtml(user.name || 'Anjali')} <span style="animation: wave 2s infinite transform-origin: 70% 70%; display: inline-block;">👋</span>`;
     }
 
     // Study Quotes
@@ -481,7 +484,7 @@ const App = {
     const saveProfileBtn = document.getElementById('saveProfileBtn');
     if (saveProfileBtn) {
       saveProfileBtn.addEventListener('click', () => {
-        user.name = profileNameInput.value.trim() || 'Aniket';
+        user.name = profileNameInput.value.trim() || 'Anjali';
         user.major = profileMajorInput.value.trim() || 'Computer Science';
         user.dailyGoalHours = parseFloat(profileGoalInput.value) || 4;
         Storage.saveUser(user);
